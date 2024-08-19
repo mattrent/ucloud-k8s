@@ -35,3 +35,14 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+
+# keys and conf
+hosts.ini
+credentials.json
+terraform.tfvars
+ucloud_key*
+tailscale_key
+
+# editor
+.vscode

@@ -1,0 +1,26 @@
+---
+- name: check for tailscale command
+  command: command -v tailscale >/dev/null 2>&1
+  register: installed
+  no_log: true
+  ignore_errors: true
+
+- name: download tailscale install script
+  get_url:
+    url: https://tailscale.com/install.sh
+    dest: /tmp/tailscale-install.sh
+    mode: "u+rwx"
+  when: installed.rc != 0
+  register: download
+
+- name: run tailscale install script
+  shell: /tmp/tailscale-install.sh
+  when: download.changed
+
+- name: remove tailscale install script
+  file:
+    path: /tmp/tailscale-install.sh
+    state: absent
+
+- name: connect to tailscale
+  shell: "sudo tailscale up --authkey {{ lookup('file', '../tailscale_key')}}"
