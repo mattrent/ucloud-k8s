@@ -9,10 +9,12 @@
   gather_facts: true
   become: true
   roles:
-    - { role: kubernetes/control, tags: control }
+    - kubernetes/control
+    - ctf-deps
+    - pulumi-deploy
 
 - hosts: workers
   gather_facts: true
   become: true
   roles:
-    - { role: kubernetes/worker, tags: worker }
+    - kubernetes/worker

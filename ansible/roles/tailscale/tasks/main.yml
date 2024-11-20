@@ -22,5 +22,8 @@
     path: /tmp/tailscale-install.sh
     state: absent
 
+# TODO: separate role for worker and control; set --hostname=ctf-core for control
 - name: connect to tailscale
   shell: "sudo tailscale up --authkey {{ lookup('file', '../tailscale_key')}}"
+# TODO: after everything is deployed, new role to expose service
+# command: sudo tailscale funnel --tls-terminated-tcp=443 tcp://localhost:<service-port>
