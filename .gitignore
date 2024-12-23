@@ -43,6 +43,7 @@ credentials.json
 terraform.tfvars
 ucloud_key*
 tailscale_key
+tailscale_key.*
 
 # editor
 .vscode
