@@ -41,7 +41,10 @@ resource "google_compute_firewall" "headscale_enabled" {
 }
 
 resource "google_compute_address" "ctf_static_addr" {
-  name = "ipv4-address"
+  name = "ctf-ipv4-static-address"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "google_compute_instance" "headscale_core_ctf" {
